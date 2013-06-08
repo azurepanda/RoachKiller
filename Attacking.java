@@ -19,7 +19,7 @@ public class Attacking extends Node{
 		
 		boolean inroacharea = Variable.currentArea.contains(Players.getLocal().getLocation());
 		
-		return inroacharea && !Method.outoffood();
+		return inroacharea && !Method.outOfFood();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -33,6 +33,12 @@ public class Attacking extends Node{
 			Task.sleep(200,200);
 		}
 		
+		if(Variable.mage==true && Method.outOfRunes()){
+			Variable.status="Out of runes, Logging out";
+			Game.logout(false);
+			Context.get().getScriptHandler().stop();
+		}
+		
 		NPC target = NPCs.getNearest(new Filter<NPC>(){
 			public boolean accept(NPC npc){
 				return npc.getInteracting() == null
@@ -44,7 +50,7 @@ public class Attacking extends Node{
 		});
 		
 		if(target==null){
-			Variable.status=("Looking for target");
+			Variable.status="Looking for target";
 			if(Players.getLocal().getPlane()==2){
 				Walking.newTilePath(Variable.Floor2LookingPath).traverse();
 			}
@@ -58,8 +64,8 @@ public class Attacking extends Node{
 				Variable.status="Attacking";
 				target.interact("Attack", target.getName());
 				Task.sleep(300, 400);
-				if(Variable.range == true && Method.outofammo()){
-					Variable.status=("Out of ammo, Logging out");
+				if(Variable.range == true && Method.outOfAmmo()){
+					Variable.status="Out of ammo, Logging out";
 					Game.logout(false);
 					Context.get().getScriptHandler().stop();
 				}

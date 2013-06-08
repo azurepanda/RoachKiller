@@ -49,6 +49,45 @@ public class GUI extends JFrame implements ActionListener{
 		case "Floor 2":
 			Variable.currentArea = Variable.roaches2;
 			break;
+		default:
+			Variable.status="Something went wrong in the setup..";
+			break;
+		}
+		
+		switch(String.valueOf(cmbCombatStyle.getSelectedItem())){
+		case "Meele":
+			Variable.meele = true;
+			break;
+		case "Ranged":
+			Variable.range = true;
+			break;
+		case "Mage":
+			Variable.mage = true;
+			break;
+		default:
+			Variable.status="Something went wrong in the setup..";
+			break;
+		}
+		
+		switch(String.valueOf(cmbSpellChoice.getSelectedItem())){
+		case "Air":
+			Variable.currentSpell = Variable.airSpell;
+			break;
+		case "Water":
+			Variable.currentSpell = Variable.waterSpell;
+			break;
+		case "Earth":
+			Variable.currentSpell = Variable.earthSpell;
+			break;
+		case "Fire":
+			Variable.currentSpell = Variable.fireSpell;
+			break;
+		case "None":
+			Variable.currentSpell = Variable.nullSpell;
+			break;
+		default:
+			Variable.status="Something went wrong in the setup..";
+			break;
 		}
 
 		if(chkLowTierLoot.isSelected()){
@@ -64,20 +103,25 @@ public class GUI extends JFrame implements ActionListener{
 	
 	private void initComponents() {
 
+		btnStart = new JButton();
 		lblFood = new JLabel();
 		cmbFood = new JComboBox<>();
-		btnStart = new JButton();
 		lblFoodAmount = new JLabel();
 		cmbFoodAmount = new JComboBox<>();
 		lblFightPlane = new JLabel();
 		cmbFightPlane = new JComboBox<>();
 		lblLowTierLoot = new JLabel();
 		chkLowTierLoot = new JCheckBox();
+		lblCombatStyle = new JLabel();
+		cmbCombatStyle = new JComboBox<>();
+		lblSpellChoice = new JLabel();
+		cmbSpellChoice = new JComboBox<>();
 
 		interfaceFrame.setVisible(true);
 		interfaceFrame.setTitle("RoachKiller F2P");
-		interfaceFrame.setSize(250, 130);
+		interfaceFrame.setSize(294, 157);
 		interfaceFrame.setLayout(new java.awt.FlowLayout());
+		interfaceFrame.setLocationRelativeTo(null);
 		
 		lblFood.setText("Food: ");
 		interfaceFrame.add(lblFood);
@@ -108,6 +152,18 @@ public class GUI extends JFrame implements ActionListener{
 		chkLowTierLoot.setToolTipText("Pick up low grade items (mith plate, uncut saphires, etc");
 		interfaceFrame.add(chkLowTierLoot);
 		
+		lblCombatStyle.setText("Combat Style: ");
+		interfaceFrame.add(lblCombatStyle);
+		
+		cmbCombatStyle.setModel(new DefaultComboBoxModel<>(new String[] { "Meele", "Ranged", "Mage" }));
+		interfaceFrame.add(cmbCombatStyle);
+		
+		lblSpellChoice.setText("Spell Choice: ");
+		interfaceFrame.add(lblSpellChoice);
+		
+		cmbSpellChoice.setModel(new DefaultComboBoxModel<>(new String[] { "None", "Air", "Water", "Earth", "Fire" }));
+		interfaceFrame.add(cmbSpellChoice);
+		
 		btnStart.setText("Start");
 		btnStart.setPreferredSize(new Dimension(80,32));
 		btnStart.setVerticalTextPosition(AbstractButton.CENTER);
@@ -121,15 +177,19 @@ public class GUI extends JFrame implements ActionListener{
 		interfaceFrame.add(btnStart);
 	}
 
-	private JLabel lblFood;
-	private JComboBox<String> cmbFood;
 	private JButton btnStart;
+	private JLabel lblFood;
+	private JComboBox<String> cmbFood;	
 	private JLabel lblFoodAmount;
 	private JComboBox<String> cmbFoodAmount;
 	private JLabel lblFightPlane;
 	private JComboBox<String> cmbFightPlane;
+	private JLabel lblCombatStyle;
+	private JComboBox<String> cmbCombatStyle;
 	private JLabel lblLowTierLoot;
 	private JCheckBox chkLowTierLoot;
+	private JLabel lblSpellChoice;
+	private JComboBox<String> cmbSpellChoice;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

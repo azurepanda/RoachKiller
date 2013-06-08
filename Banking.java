@@ -13,14 +13,15 @@ public class Banking extends Node{
 		
 		boolean inbankarea = Variable.Bank.contains(Players.getLocal().getLocation());
 		
-		return inbankarea && !Method.itemsready();
+		return inbankarea && !Method.itemsReady();
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public void execute() {	
 		System.out.println("Banking");
-		Variable.status="Banking";
+		Variable.status="Banking";	
+
 		Bank.open();
 		for(int x = 0; x<20; x++){
 			if(Bank.isOpen()){
@@ -31,11 +32,27 @@ public class Banking extends Node{
 		Bank.depositInventory();
 		Task.sleep(200,100);
 		
-		System.out.println("We have "+Bank.getItemCount(Variable.food) + " food left in the bank");
-		Bank.withdraw(Variable.food, Variable.foodAmount);
+		if(Variable.mage==true){//rune withdrawl
+			int withdrawRunes[] = Variable.currentSpell;;
+			if(withdrawRunes.length > 0){
+				for(int x = 0; x < withdrawRunes.length; x++){
+					if(Variable.currentSpell[x] != 0){
+						int runes = (Bank.getItem(Variable.currentSpell[x]).getStackSize())-1;
+						if(runes>0 ){
+							Bank.withdraw(Variable.currentSpell[x], runes);
+						}
+					}
+				}
+			}
+		}	
+		
+		if(Bank.getItem(Variable.food).getStackSize() > Variable.foodAmount){
+			Bank.withdraw(Variable.food, Variable.foodAmount);
+		}
+		
 		Bank.close();
 		Task.sleep(200);
-		if(!Method.itemsready()){
+		if(!Method.itemsReady()){
 			if(Bank.isOpen()){
 				Bank.close();
 			}

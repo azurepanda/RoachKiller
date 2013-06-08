@@ -17,6 +17,7 @@ import org.powerbot.game.api.methods.Walking;
 import org.powerbot.game.api.methods.input.Keyboard;
 import org.powerbot.game.api.methods.input.Mouse;
 import org.powerbot.game.api.methods.interactive.Players;
+import org.powerbot.game.api.methods.tab.Equipment;
 import org.powerbot.game.api.methods.tab.Inventory;
 import org.powerbot.game.api.methods.widget.Camera;
 import org.powerbot.game.api.util.Random;
@@ -27,19 +28,64 @@ import org.powerbot.game.bot.Context;
 
 public class Method {
 
-	public static boolean itemsready() {
-		return (Inventory.getCount(Variable.food) == Variable.foodAmount);
+	public static boolean itemsReady() {
+		return !outOfFood() && !outOfRunes();
 	}
 
-	public static boolean outoffood() {
+	public static boolean outOfFood() {
 		return Inventory.getCount(Variable.food) < 1;
 	}
 
-	public static boolean outofammo() {
-		if(Variable.AmmoCheck.getText() == "You have no ammo equipped."){
-			return true;
+	public static boolean outOfAmmo() {
+		String ammoMessage = Variable.AmmoCheck.getText();
+		if(ammoMessage.equals("You have no ammo equipped.")){
+			for(int x=0 ; x!=5; x++){
+				if(!Equipment.containsOneOf(Variable.arrows[x])){
+					return true;
+				}
+			}
 		}
 		return false;
+	}
+	
+	public static boolean outOfRunes() {
+		if(Variable.mage==true){
+			for(int x = 0; x < Variable.currentSpell.length; x++){
+				if(Inventory.getItem(Variable.currentSpell[x]) == null && Variable.currentSpell[x]!=0){
+					return true;
+				}
+				if(Variable.currentSpell[x]!=0){
+					if(Inventory.getItem(Variable.currentSpell[x]).getStackSize() < 10){
+						return true;
+					}	
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static void staffEquipped() {
+		for(int x = 0; x < (Variable.staffs.length); x++){
+			boolean y = Equipment.containsOneOf(Variable.staffs[x]);
+			if(y == true){
+				int staffEquipped = Variable.staffs[x];
+				x=100;
+				switch(staffEquipped){
+					case Variable.airStaff://if staff equipped removes that type of rune from rune withdraw list
+						Variable.currentSpell[2] = 0;
+						break;
+					case Variable.waterStaff:
+						Variable.currentSpell[1] = 0;
+						break;
+					case Variable.earthStaff:
+						Variable.currentSpell[3] = 0;
+						break;
+					case Variable.fireStaff:
+						Variable.currentSpell[0] = 0;
+						break;
+				}
+			}
+		}
 	}
 	
 	public static Image getImage(String url) {

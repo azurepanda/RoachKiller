@@ -56,7 +56,7 @@ public class Variable {
 	public static final int swordfish = 373;
 	
 	public static boolean meele = false;
-	public static boolean range = true;
+	public static boolean range = false;
 	public static boolean mage = false;
 	
 	public static int foodAmount = 20;
@@ -64,9 +64,25 @@ public class Variable {
 	
 	public static final int roachId = 7160;
 	
-	public static final int[]lootTierHigh = {1185, 24154, 560, 563, 554, 448, 450, 1617, 1333};
-	public static final int[]lootTierLow =  {1621, 1623, 1619, 24154, 1621, 1185, 560, 563, 554, 448, 450, 1617, 1333};
+	public static final int[]arrows = {882, 884, 886, 888, 890, 892};
+	public static final int[]lootTierHigh = {1185, 24154, 560, 563, 554, 447, 448, 449, 450, 1617, 1333};
+	public static final int[]lootTierLow =  {1621, 1623, 1619, 24154, 1621, 1185, 560, 563, 554, 447, 448, 449, 450, 1617, 1333};
 	public static int[] lootTier;
+	public static int[] withdrawList = {556, 554, 555};
+	public static int[] withdrawAmounts = {20, 25, 30};
+	
+	public static final int airStaff =  1381;
+	public static final int waterStaff =  1383;
+	public static final int earthStaff =  1385;
+	public static final int fireStaff = 1387;
+	public static final int[] staffs =  {1381, 1383, 1385, 1387};
+	
+	public static final int[] airSpell = { 0, 0, 556, 0}; //fire water air earth low -> high
+	public static final int[] fireSpell = { 554, 0, 556, 0};
+	public static final int[] waterSpell = { 0, 555, 556, 0};
+	public static final int[] earthSpell = { 0, 0, 556, 557};
+	public static final int[] nullSpell = { 0, 0, 0, 0};
+	public static int[] currentSpell;
 	
 	public static Map<Integer, Integer> lootPrices;
 	

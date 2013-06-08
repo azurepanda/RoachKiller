@@ -10,10 +10,12 @@ import org.powerbot.core.script.job.Task;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.core.script.job.state.Tree;
 import org.powerbot.game.api.Manifest;
+import org.powerbot.game.api.methods.Game;
 import org.powerbot.game.api.methods.Widgets;
 import org.powerbot.game.api.methods.input.Mouse;
 import org.powerbot.game.api.methods.tab.Skills;
 import org.powerbot.game.api.methods.widget.Camera;
+import org.powerbot.game.bot.Context;
 
 @Manifest(authors = {"azurepanda"}, 
 name = "RoachKiller F2P", 
@@ -25,6 +27,7 @@ public class Main extends ActiveScript implements PaintListener{
 	private Tree container = null;
 	private List<Node> jobs = new ArrayList<Node>();
 	
+	@SuppressWarnings("deprecation")
 	public void onStart(){
 		new GUI();
 		
@@ -34,10 +37,21 @@ public class Main extends ActiveScript implements PaintListener{
 	    	Task.sleep(10);
 	    }
 		
+	    if(Variable.mage==true && Variable.currentSpell==Variable.nullSpell){
+	    	Variable.status="Please select a spell.";
+	    	Game.logout(false);
+			Context.get().getScriptHandler().stop();
+	    }
+	   
 	    Variable.lootPrices = Method.getPrices(Variable.lootTier);
 		
 		Widgets.get(548, 160).click(true);
 		Camera.setPitch(360);
+		
+		if(Variable.mage==true){
+				Method.staffEquipped();
+		}
+		
 		Mouse.setSpeed(Mouse.Speed.FAST);
 		jobs.add(new Looting());	
 		jobs.add(new Attacking());

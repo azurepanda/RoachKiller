@@ -18,9 +18,8 @@ public class Looting extends Node{
 		GroundItem g = GroundItems.getNearest(Variable.lootTier);
 		boolean inroacharea = Variable.currentArea.contains(Players.getLocal().getLocation());
 		boolean incombat = Players.getLocal().isInCombat();
-		boolean interacting = Players.getLocal().getInteracting() != null;
 		
-		return g != null && inroacharea && !incombat && Variable.currentArea.contains(g) && !interacting;
+		return g != null && inroacharea && !incombat && Variable.currentArea.contains(g);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -40,7 +39,7 @@ public class Looting extends Node{
 					}
 					Variable.status="Picking up loot";
 					g.interact("Take", g.getGroundItem().getName());
-					Task.sleep(650);
+					Task.sleep(1000);
 					int t = 0;	
 					while(Players.getLocal().getInteracting() != null && Players.getLocal().isMoving()){
 						Task.sleep(40,10);
@@ -63,7 +62,7 @@ public class Looting extends Node{
 					} else {
 						Variable.totalGained += value * stack;
 					}
-					Task.sleep(600);
+					Task.sleep(1000);
 				}
 			}
 		}
