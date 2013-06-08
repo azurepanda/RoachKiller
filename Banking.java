@@ -63,22 +63,3 @@ public class Banking extends Node{
 	}
 }
 
-/*
-for(int x = 0; x < v.staffs[].length; x++){
-	boolean y = Equipment.getOneOf(staffs[x]);
-	if(y == true){
-		v.staffEqipped = v.staffs[x];
-		switch(v.staffEquipped){
-			case fireStaffId:
-				v.currentSpell[0] = null;
-				break;
-		}
-		x=100;
-	}
-}
-
-int runes = Bank.getItemCount()-1;
-if(runes>=0 && v.currentSpell != null){
-	
-}
-*/
