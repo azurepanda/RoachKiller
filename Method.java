@@ -37,10 +37,10 @@ public class Method {
 	}
 
 	public static boolean outOfAmmo() {
-		String ammoMessage = Variable.AmmoCheck.getText();
+		String ammoMessage = Variable.AMMOCHECK.getText();
 		if(ammoMessage.equals("You have no ammo equipped.")){
 			for(int x=0 ; x!=5; x++){
-				if(!Equipment.containsOneOf(Variable.arrows[x])){
+				if(!Equipment.containsOneOf(Variable.ARROWS[x])){
 					return true;
 				}
 			}
@@ -65,22 +65,22 @@ public class Method {
 	}
 	
 	public static void staffEquipped() {
-		for(int x = 0; x < (Variable.staffs.length); x++){
-			boolean y = Equipment.containsOneOf(Variable.staffs[x]);
+		for(int x = 0; x < (Variable.STAFFS.length); x++){
+			boolean y = Equipment.containsOneOf(Variable.STAFFS[x]);
 			if(y == true){
-				int staffEquipped = Variable.staffs[x];
+				int staffEquipped = Variable.STAFFS[x];
 				x=100;
 				switch(staffEquipped){
-					case Variable.airStaff://if staff equipped removes that type of rune from rune withdraw list
+					case Variable.AIRSTAFF://if staff equipped removes that type of rune from rune withdraw list
 						Variable.currentSpell[2] = 0;
 						break;
-					case Variable.waterStaff:
+					case Variable.WATERSTAFF:
 						Variable.currentSpell[1] = 0;
 						break;
-					case Variable.earthStaff:
+					case Variable.EARTHSTAFF:
 						Variable.currentSpell[3] = 0;
 						break;
-					case Variable.fireStaff:
+					case Variable.FIRESTAFF:
 						Variable.currentSpell[0] = 0;
 						break;
 				}
@@ -177,16 +177,16 @@ public class Method {
 	
 	public static void useAbilities() {
 
-		if (Variable.open.visible()) {
-			Variable.open.click(true);
+		if (Variable.OPENAB.visible()) {
+			Variable.OPENAB.click(true);
 		}
 
 		if (Players.getLocal().isInCombat() == true) {
-			if (Variable.EnterPress.getText() != "[Press Enter to Chat]") {
-				if (Variable.close.visible()) {
+			if (Variable.ENTERPRESS.getText() != "[Press Enter to Chat]") {
+				if (Variable.CLOSEAB.visible()) {
 					Keyboard.sendKey((char) KeyEvent.VK_ENTER);
 				} else {
-					Variable.open.click(true);
+					Variable.OPENAB.click(true);
 					Task.sleep(500, 20);
 					Keyboard.sendKey((char) KeyEvent.VK_ENTER);
 				}

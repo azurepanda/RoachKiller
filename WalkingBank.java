@@ -14,7 +14,7 @@ public class WalkingBank extends Node{
 	@Override
 	public boolean activate() {
 
-		boolean inbankarea = Variable.Bank.contains(Players.getLocal().getLocation());
+		boolean inbankarea = Variable.BANK.contains(Players.getLocal().getLocation());
 		
 		return !inbankarea && Method.outOfFood();
 	}
@@ -42,7 +42,7 @@ public class WalkingBank extends Node{
 					}while(Players.getLocal().getPlane()!=0);
 				}else{
 					Tile WalkTo = null;
-					Method.walkToArea(Variable.ropeUp, WalkTo);
+					Method.walkToArea(Variable.ROPEUP, WalkTo);
 					Method.turnTo(RopeUp, 5);
 					int failsafe = 0;
 					do{
@@ -54,7 +54,7 @@ public class WalkingBank extends Node{
 							Game.logout(false);
 							Context.get().getScriptHandler().stop();
 						}
-					}while(!Variable.ropeUp.contains(Players.getLocal().getLocation()));
+					}while(!Variable.ROPEUP.contains(Players.getLocal().getLocation()));
 				}
 			}
 			if(Players.getLocal().getPlane()==2){
@@ -74,7 +74,7 @@ public class WalkingBank extends Node{
 					}while(Players.getLocal().getPlane()!=3);
 				}else{
 					Tile WalkTo = null;
-					Method.walkToArea(Variable.stairsUp, WalkTo);
+					Method.walkToArea(Variable.STAIRSUP, WalkTo);
 					WalkTo.clickOnMap();
 					Method.turnTo(StairsUp, 5);
 					int failsafe = 0;
@@ -87,13 +87,13 @@ public class WalkingBank extends Node{
 							Game.logout(false);
 							Context.get().getScriptHandler().stop();
 						}
-					}while(!Variable.stairsUp.contains(Players.getLocal().getLocation()));
+					}while(!Variable.STAIRSUP.contains(Players.getLocal().getLocation()));
 				}
 			}
 		}else{
-			if(!Variable.Bank.contains(Players.getLocal().getLocation())){
+			if(!Variable.BANK.contains(Players.getLocal().getLocation())){
 				Variable.status="Walking to Bank";
-				Walking.newTilePath(Variable.TopFloorPath).reverse().traverse();
+				Walking.newTilePath(Variable.WALKINGBANKPATH).reverse().traverse();
 				Task.sleep(100);
 			}
 		}

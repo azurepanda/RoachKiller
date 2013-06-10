@@ -23,9 +23,9 @@ public class WalkingRoaches extends Node{
 	@Override
 	public void execute() {
 			
-		if(!Variable.ropeDown.contains(Players.getLocal().getLocation())){
+		if(!Variable.ROPEDOWN.contains(Players.getLocal().getLocation())){
 			Variable.status="Walking to Roaches";
-			Walking.newTilePath(Variable.TopFloorPath).traverse();
+			Walking.newTilePath(Variable.WALKINGBANKPATH).traverse();
 			Task.sleep(100,50);
 		}else{
 			Variable.status="Clicking rope down";
@@ -59,10 +59,10 @@ public class WalkingRoaches extends Node{
 							Game.logout(false);
 							Context.get().getScriptHandler().stop();
 						}
-					}while(!Variable.stairsDown.contains(Players.getLocal().getLocation()));
+					}while(!Variable.STAIRSDOWN.contains(Players.getLocal().getLocation()));
 				}else{
 					Tile WalkTo = null;
-					Method.walkToArea(Variable.stairsDown, WalkTo);
+					Method.walkToArea(Variable.STAIRSDOWN, WalkTo);
 					Method.turnTo(StairsDown, 5);
 					int failsafe = 0;
 					do{

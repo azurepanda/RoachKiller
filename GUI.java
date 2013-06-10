@@ -25,29 +25,29 @@ public class GUI extends JFrame implements ActionListener{
 		String s = cmbFood.getSelectedItem().toString();
 
 		if (s.equals("Swordfish")) {
-			Variable.food = Variable.swordfish;
+			Variable.food = Variable.SWORDFISH;
 		}
 		if (s.equals("Lobster")) {
-			Variable.food = Variable.lobster;
+			Variable.food = Variable.LOBSTER;
 		}
 		if (s.equals("Tuna")) {
-			Variable.food = Variable.tuna;
+			Variable.food = Variable.TUNA;
 		}
 		if (s.equals("Salmon")) {
-			Variable.food = Variable.salmon;
+			Variable.food = Variable.SALMON;
 		}
 		if (s.equals("Trout")) {
-			Variable.food = Variable.trout;
+			Variable.food = Variable.TROUT;
 		}
 
 		Variable.foodAmount = Integer.parseInt((String) cmbFoodAmount.getSelectedItem());
 		
 		switch(String.valueOf(cmbFightPlane.getSelectedItem())){
 		case "Floor 1":
-			Variable.currentArea = Variable.roaches1;
+			Variable.currentArea = Variable.ROACHES1;
 			break;
 		case "Floor 2":
-			Variable.currentArea = Variable.roaches2;
+			Variable.currentArea = Variable.ROACHES2;
 			break;
 		default:
 			Variable.status="Something went wrong in the setup..";
@@ -71,19 +71,19 @@ public class GUI extends JFrame implements ActionListener{
 		
 		switch(String.valueOf(cmbSpellChoice.getSelectedItem())){
 		case "Air":
-			Variable.currentSpell = Variable.airSpell;
+			Variable.currentSpell = Variable.AIRSPELL;
 			break;
 		case "Water":
-			Variable.currentSpell = Variable.waterSpell;
+			Variable.currentSpell = Variable.WATERSPELL;
 			break;
 		case "Earth":
-			Variable.currentSpell = Variable.earthSpell;
+			Variable.currentSpell = Variable.EARTHSPELL;
 			break;
 		case "Fire":
-			Variable.currentSpell = Variable.fireSpell;
+			Variable.currentSpell = Variable.FIRESPELL;
 			break;
 		case "None":
-			Variable.currentSpell = Variable.nullSpell;
+			Variable.currentSpell = Variable.NULLSPELL;
 			break;
 		default:
 			Variable.status="Something went wrong in the setup..";
@@ -91,9 +91,9 @@ public class GUI extends JFrame implements ActionListener{
 		}
 
 		if(chkLowTierLoot.isSelected()){
-			Variable.lootTier = Variable.lootTierLow;
+			Variable.lootTier = Variable.LOOTTIERLOW;
 		}else{
-			Variable.lootTier = Variable.lootTierHigh;
+			Variable.lootTier = Variable.LOOTTIERHIGH;
 		}
 		
 		Variable.GUIopen = false;

@@ -19,7 +19,7 @@ import org.powerbot.game.bot.Context;
 
 @Manifest(authors = {"azurepanda"}, 
 name = "RoachKiller F2P", 
-version = 0.1,
+version = 1.1,
 description = "Make bank, gain levels - RoachKiller F2P.")
 
 public class Main extends ActiveScript implements PaintListener{
@@ -37,7 +37,7 @@ public class Main extends ActiveScript implements PaintListener{
 	    	Task.sleep(10);
 	    }
 		
-	    if(Variable.mage==true && Variable.currentSpell==Variable.nullSpell){
+	    if(Variable.mage==true && Variable.currentSpell==Variable.NULLSPELL){
 	    	Variable.status="Please select a spell.";
 	    	Game.logout(false);
 			Context.get().getScriptHandler().stop();
@@ -81,13 +81,13 @@ public class Main extends ActiveScript implements PaintListener{
 			Variable.runTime = (((System.currentTimeMillis() - Variable.startTime)/1000)+1);
 			Variable.runString = Method.componentTime(Variable.runTime);
 			
-			Variable.gainedXpAttack = Skills.getExperience(Skills.ATTACK) - Variable.startXpAttack;
-			Variable.gainedXpStrength = Skills.getExperience(Skills.STRENGTH) - Variable.startXpStrength;
-			Variable.gainedXpDefense = Skills.getExperience(Skills.DEFENSE) - Variable.startXpDefense;
-			Variable.gainedXpMage = Skills.getExperience(Skills.MAGIC) - Variable.startXpMage;
-			Variable.gainedXpRange = Skills.getExperience(Skills.RANGE) - Variable.startXpRange;
-			Variable.gainedXpHitpoints = Skills.getExperience(Skills.CONSTITUTION) - Variable.startXpHitpoints;
-			Variable.gainedXpPrayer = Skills.getExperience(Skills.PRAYER) - Variable.startXpPrayer;
+			Variable.gainedXpAttack = Skills.getExperience(Skills.ATTACK) - Variable.STARTXPATTACK;
+			Variable.gainedXpStrength = Skills.getExperience(Skills.STRENGTH) - Variable.STARTXPSTRENGTH;
+			Variable.gainedXpDefense = Skills.getExperience(Skills.DEFENSE) - Variable.STARTXPDEFENSE;
+			Variable.gainedXpMage = Skills.getExperience(Skills.MAGIC) - Variable.STARTXPMAGE;
+			Variable.gainedXpRange = Skills.getExperience(Skills.RANGE) - Variable.STARTXPRANGE;
+			Variable.gainedXpHitpoints = Skills.getExperience(Skills.CONSTITUTION) - Variable.STARTXPHITPOINTS;
+			Variable.gainedXpPrayer = Skills.getExperience(Skills.PRAYER) - Variable.STARTXPPRAYER;
 			
 			Variable.gainedExp = Variable.gainedXpAttack + Variable.gainedXpStrength + Variable.gainedXpDefense + Variable.gainedXpMage
 					+ Variable.gainedXpRange + Variable.gainedXpHitpoints + Variable.gainedXpPrayer;
@@ -98,22 +98,24 @@ public class Main extends ActiveScript implements PaintListener{
 			Variable.totalGainedString = String.valueOf(Variable.totalGained);
 			Variable.totalGainedPerHour = (int) (Variable.totalGained*3600/Variable.runTime);
 			Variable.totalGainedPerHourString = String.valueOf(Variable.totalGainedPerHour);
+			//Variable.totalGainedConcat = Variable.totalGainedString+"("+Variable.totalGainedPerHourString+")";
 			
 			g.setColor(Color.BLUE);
 			g.drawLine(Mouse.getX() - 4, Mouse.getY() - 4, Mouse.getX() + 4, Mouse.getY() + 4);
 			g.drawLine(Mouse.getX() - 4, Mouse.getY() + 4, Mouse.getX() + 4, Mouse.getY() - 4);
 			
-			g.drawImage(Variable.background, 3, 392, null);
+			g.drawImage(Variable.BACKGROUND, 0, 388, null);
 			
 			g.setColor(Color.BLACK);
 			
-			g.drawString(Variable.runString, 86, 510);//time ran 99 470 128 491
-			g.drawString(Variable.gainedExpString, 88, 434);//exp gained
-			g.drawString(Variable.expPHourString, 118, 451);//exp per hour
-			g.drawString(Variable.totalGainedString, 99, 471);//profit gained
-			g.drawString(Variable.totalGainedPerHourString, 128, 491);//profit gained per hour
-			g.drawString(Variable.version, 268, 510);//version
-			g.drawString(Variable.status, 257, 434);//status
+			g.drawString(Variable.runString, 284, 514);//time ran 99 470 128 491
+			g.drawString(Variable.gainedExpString, 104, 513);//exp gained
+			g.drawString(Variable.expPHourString, 89, 480);//exp per hour
+			//g.drawString(Variable.totalGainedString, , );//profit gained
+			g.drawString(Variable.totalGainedPerHourString, 112, 445);//profit gained per hour
+			//g.drawString(Variable.totalGainedConcat, 112, 445);//combined profit string
+			g.drawString(Variable.VERSION, 457, 410);//version
+			g.drawString(Variable.status, 229, 423);//status
 		}
 	}
 }

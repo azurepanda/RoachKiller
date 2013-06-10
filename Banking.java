@@ -11,7 +11,7 @@ public class Banking extends Node{
 	@Override
 	public boolean activate() {
 		
-		boolean inbankarea = Variable.Bank.contains(Players.getLocal().getLocation());
+		boolean inbankarea = Variable.BANK.contains(Players.getLocal().getLocation());
 		
 		return inbankarea && !Method.itemsReady();
 	}

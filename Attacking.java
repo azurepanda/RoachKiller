@@ -42,7 +42,7 @@ public class Attacking extends Node{
 		NPC target = NPCs.getNearest(new Filter<NPC>(){
 			public boolean accept(NPC npc){
 				return npc.getInteracting() == null
-						&& npc.getId() == Variable.roachId
+						&& npc.getId() == Variable.ROACHID
 						&& Variable.currentArea.contains(npc)
 						&& npc.getModel() != null
 						&& npc.getHealthPercent() > 0;
@@ -52,7 +52,7 @@ public class Attacking extends Node{
 		if(target==null){
 			Variable.status="Looking for target";
 			if(Players.getLocal().getPlane()==2){
-				Walking.newTilePath(Variable.Floor2LookingPath).traverse();
+				Walking.newTilePath(Variable.LOOKINGROACHPATHF2).traverse();
 			}
 		}
 		
@@ -88,8 +88,8 @@ public class Attacking extends Node{
 		}
 		
 		if(Players.getLocal().getInteracting() == null){
-			if(Variable.close.visible()){
-				Variable.close.click(true);
+			if(Variable.CLOSEAB.visible()){
+				Variable.CLOSEAB.click(true);
 			}
 		}
 	}
