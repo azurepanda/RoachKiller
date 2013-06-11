@@ -10,8 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-@SuppressWarnings("serial")
-public class GUI extends JFrame implements ActionListener{
+public class GUI{
 
 	public JFrame interfaceFrame = new JFrame("GUI");
 	
@@ -21,7 +20,7 @@ public class GUI extends JFrame implements ActionListener{
 		initComponents();
 	}
 
-	private void btnStartActionPerformed(ActionEvent e) {
+	private void btnStartActionPerformed(ActionEvent e){
 		String s = cmbFood.getSelectedItem().toString();
 
 		if (s.equals("Swordfish")) {
@@ -190,8 +189,4 @@ public class GUI extends JFrame implements ActionListener{
 	private JCheckBox chkLowTierLoot;
 	private JLabel lblSpellChoice;
 	private JComboBox<String> cmbSpellChoice;
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	}
 }
