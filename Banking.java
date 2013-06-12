@@ -1,3 +1,4 @@
+package roachkiller;
 import org.powerbot.core.script.job.Task;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.Game;

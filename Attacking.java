@@ -1,3 +1,4 @@
+package roachkiller;
 import org.powerbot.core.script.job.Task;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.Game;
@@ -39,6 +40,10 @@ public class Attacking extends Node{
 			Context.get().getScriptHandler().stop();
 		}
 		
+		if(!Walking.isRunEnabled() && Walking.getEnergy() > 25){
+			Walking.setRun(true);
+		}
+		
 		NPC target = NPCs.getNearest(new Filter<NPC>(){
 			public boolean accept(NPC npc){
 				return npc.getInteracting() == null
@@ -78,6 +83,10 @@ public class Attacking extends Node{
 			Task.sleep(100);
 			if(!(Players.getLocal().getAnimation() == -1)){
 				Method.useAbilities();
+				if(Players.getLocal().getInteracting() == null && Players.getLocal().getPlane() == 2){
+					System.out.println("Sleeping");
+					Task.sleep(3500);
+				}
 				int a = Random.nextInt(1, 1000);
 				if (a < 3) {
 					Camera.setPitch(150);

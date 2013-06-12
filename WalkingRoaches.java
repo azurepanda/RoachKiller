@@ -1,3 +1,4 @@
+package roachkiller;
 import org.powerbot.core.script.job.Task;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.Game;
@@ -19,7 +20,7 @@ public class WalkingRoaches extends Node{
 		return !inroacharea && Method.itemsReady();
 	}
 
-	@SuppressWarnings({ "deprecation", "null" })
+	@SuppressWarnings({ "deprecation"})
 	@Override
 	public void execute() {
 			
@@ -44,10 +45,11 @@ public class WalkingRoaches extends Node{
 				}
 			}while(Players.getLocal().getPlane()!=3);
 		}
-		if(!Variable.currentArea.contains(Players.getLocal().getLocation())){
+		if(!Variable.currentArea.contains(Players.getLocal().getLocation()) && Players.getLocal().getPlane() == 3){
 			SceneObject StairsDown = SceneEntities.getNearest(29671);
 			if(StairsDown != null){
 				if(StairsDown.isOnScreen()){
+					Variable.status="Clicking stairs";
 					StairsDown.click(true);
 					int failsafe = 0;
 					do{
@@ -59,13 +61,14 @@ public class WalkingRoaches extends Node{
 							Game.logout(false);
 							Context.get().getScriptHandler().stop();
 						}
-					}while(!Variable.STAIRSDOWN.contains(Players.getLocal().getLocation()));
+					}while(Players.getLocal().getPlane() != 2);
 				}else{
-					Tile WalkTo = null;
-					Method.walkToArea(Variable.STAIRSDOWN, WalkTo);
+					Variable.status="Walking to stairs down";
 					Method.turnTo(StairsDown, 5);
 					int failsafe = 0;
 					do{
+						Tile WalkTo = null;
+						WalkTo = Method.walkToArea(Variable.STAIRSDOWN, WalkTo);
 						WalkTo.clickOnMap();
 						Task.sleep(1000,100);
 						failsafe++;
@@ -74,7 +77,7 @@ public class WalkingRoaches extends Node{
 							Game.logout(false);
 							Context.get().getScriptHandler().stop();
 						}
-					}while(Players.getLocal().getPlane()!=2);
+					}while(!Variable.STAIRSDOWN.contains(Players.getLocal().getLocation()));
 				}
 			}
 		}

@@ -1,3 +1,4 @@
+package roachkiller;
 import org.powerbot.core.script.job.Task;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.Game;
@@ -19,7 +20,7 @@ public class WalkingBank extends Node{
 		return !inbankarea && Method.outOfFood();
 	}
 
-	@SuppressWarnings({ "null", "deprecation" })
+	@SuppressWarnings({ "deprecation" })
 	@Override
 	public void execute() {
 		
@@ -41,11 +42,11 @@ public class WalkingBank extends Node{
 						}
 					}while(Players.getLocal().getPlane()!=0);
 				}else{
-					Tile WalkTo = null;
-					Method.walkToArea(Variable.ROPEUP, WalkTo);
 					Method.turnTo(RopeUp, 5);
 					int failsafe = 0;
 					do{
+						Tile WalkTo = null;
+						WalkTo = Method.walkToArea(Variable.ROPEUP, WalkTo);
 						WalkTo.clickOnMap();
 						Task.sleep(1000,100);
 						failsafe++;
@@ -73,12 +74,11 @@ public class WalkingBank extends Node{
 						}
 					}while(Players.getLocal().getPlane()!=3);
 				}else{
-					Tile WalkTo = null;
-					Method.walkToArea(Variable.STAIRSUP, WalkTo);
-					WalkTo.clickOnMap();
 					Method.turnTo(StairsUp, 5);
 					int failsafe = 0;
 					do{
+						Tile WalkTo = null;
+						WalkTo = Method.walkToArea(Variable.STAIRSUP, WalkTo);
 						WalkTo.clickOnMap();
 						Task.sleep(1000,100);
 						failsafe++;

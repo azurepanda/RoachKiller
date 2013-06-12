@@ -1,3 +1,4 @@
+package roachkiller;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,7 +39,7 @@ public class GUI{
 		if (s.equals("Trout")) {
 			Variable.food = Variable.TROUT;
 		}
-
+		
 		Variable.foodAmount = Integer.parseInt((String) cmbFoodAmount.getSelectedItem());
 		
 		switch(String.valueOf(cmbFightPlane.getSelectedItem())){
@@ -156,9 +157,21 @@ public class GUI{
 		
 		cmbCombatStyle.setModel(new DefaultComboBoxModel<>(new String[] { "Meele", "Ranged", "Mage" }));
 		interfaceFrame.add(cmbCombatStyle);
+		cmbCombatStyle.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(String.valueOf(cmbCombatStyle.getSelectedItem()).equals("Mage")){
+					cmbSpellChoice.setSelectedItem("None");
+					System.out.println("Mage");
+				}else{
+					System.out.println("Not Mage");
+				}
+			}
+		});
 		
 		lblSpellChoice.setText("Spell Choice: ");
 		interfaceFrame.add(lblSpellChoice);
+		
 		
 		cmbSpellChoice.setModel(new DefaultComboBoxModel<>(new String[] { "None", "Air", "Water", "Earth", "Fire" }));
 		interfaceFrame.add(cmbSpellChoice);

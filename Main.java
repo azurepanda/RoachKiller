@@ -1,3 +1,4 @@
+package roachkiller;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,7 +11,6 @@ import org.powerbot.core.script.job.Task;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.core.script.job.state.Tree;
 import org.powerbot.game.api.Manifest;
-import org.powerbot.game.api.methods.Game;
 import org.powerbot.game.api.methods.Widgets;
 import org.powerbot.game.api.methods.input.Mouse;
 import org.powerbot.game.api.methods.tab.Skills;
@@ -18,9 +18,9 @@ import org.powerbot.game.api.methods.widget.Camera;
 import org.powerbot.game.bot.Context;
 
 @Manifest(authors = {"azurepanda"}, 
-name = "RoachKiller F2P", 
+name = "RoachKiller", 
 version = 1.1,
-description = "Make bank, gain levels - RoachKiller F2P.")
+description = "Make bank, gain levels.")
 
 public class Main extends ActiveScript implements PaintListener{
 
@@ -39,7 +39,6 @@ public class Main extends ActiveScript implements PaintListener{
 		
 	    if(Variable.mage==true && Variable.currentSpell==Variable.NULLSPELL){
 	    	Variable.status="Please select a spell.";
-	    	Game.logout(false);
 			Context.get().getScriptHandler().stop();
 	    }
 	   

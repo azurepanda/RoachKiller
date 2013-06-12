@@ -1,3 +1,4 @@
+package roachkiller;
 import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
