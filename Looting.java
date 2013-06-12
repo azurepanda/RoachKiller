@@ -34,6 +34,7 @@ public class Looting extends Node{
 				Variable.status="Eating for room";
 				WidgetChild e = Inventory.getItem(Variable.food).getWidgetChild();
 				e.interact("Eat");
+				Task.sleep(600);
 			}else{
 				if(g != null){
 					int t = 0;
