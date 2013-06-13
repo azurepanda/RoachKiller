@@ -30,8 +30,8 @@ public class Attacking extends Node{
 		if(Players.getLocal().getHealthPercent()<60){
 			Variable.status="Eating food";
 			WidgetChild e = Inventory.getItem(Variable.food).getWidgetChild();
-			e.click(true);
-			Task.sleep(200,200);
+			e.interact("Eat");
+			Task.sleep(600);
 		}
 		
 		if(Variable.mage==true && Method.outOfRunes()){
